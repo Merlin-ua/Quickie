@@ -73,8 +73,8 @@ local function registerDraw(id, f, ...)
 	local font = love.graphics.getFont()
 
 	local state = 'normal'
-	if mouse.isHot(id) or keyboard.hasFocus(id) then
-		state = mouse.isActive(id) and 'active' or 'hot'
+	if mouse.isActive(id) then
+		state = 'active'
 	end
 	local rest = {n = select('#', ...), ...}
 	draw_items.n = draw_items.n + 1
@@ -86,7 +86,6 @@ end
 
 -- actually update-and-draw
 local function draw()
-	keyboard.endFrame()
 	mouse.endFrame()
 	group.endFrame()
 
@@ -108,7 +107,6 @@ local function draw()
 
 	group.beginFrame()
 	mouse.beginFrame()
-	keyboard.beginFrame()
 end
 
 --
